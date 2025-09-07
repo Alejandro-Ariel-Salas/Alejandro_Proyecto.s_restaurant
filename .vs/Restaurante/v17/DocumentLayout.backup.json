@@ -1,0 +1,188 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{15F50289-95D0-4628-A822-B55A7B0321DD}|Restaurante\\Restaurante.csproj|c:\\users\\aleja\\desktop\\carpetas\\trabajos practicos(unaj)\\proyecto software\\tp1\\codigo tp1\\restaurante\\restaurante\\controllers\\dishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15F50289-95D0-4628-A822-B55A7B0321DD}|Restaurante\\Restaurante.csproj|solutionrelative:restaurante\\controllers\\dishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E946B9D7-0EBC-48C9-B44C-51B178C32000}|Aplication\\Aplication.csproj|c:\\users\\aleja\\desktop\\carpetas\\trabajos practicos(unaj)\\proyecto software\\tp1\\codigo tp1\\restaurante\\aplication\\service\\dishservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E946B9D7-0EBC-48C9-B44C-51B178C32000}|Aplication\\Aplication.csproj|solutionrelative:aplication\\service\\dishservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{05E2B2A4-80FA-4A3A-8F3A-78EB4CFB247C}|domain\\domain.csproj|c:\\users\\aleja\\desktop\\carpetas\\trabajos practicos(unaj)\\proyecto software\\tp1\\codigo tp1\\restaurante\\domain\\entities\\dish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{05E2B2A4-80FA-4A3A-8F3A-78EB4CFB247C}|domain\\domain.csproj|solutionrelative:domain\\entities\\dish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF92E2F5-08D6-476F-9ADC-46DCDAFF4EFC}|Infraesructure\\Infraesructure.csproj|c:\\users\\aleja\\desktop\\carpetas\\trabajos practicos(unaj)\\proyecto software\\tp1\\codigo tp1\\restaurante\\infraesructure\\command\\dishcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF92E2F5-08D6-476F-9ADC-46DCDAFF4EFC}|Infraesructure\\Infraesructure.csproj|solutionrelative:infraesructure\\command\\dishcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E946B9D7-0EBC-48C9-B44C-51B178C32000}|Aplication\\Aplication.csproj|c:\\users\\aleja\\desktop\\carpetas\\trabajos practicos(unaj)\\proyecto software\\tp1\\codigo tp1\\restaurante\\aplication\\interfaces\\idishservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E946B9D7-0EBC-48C9-B44C-51B178C32000}|Aplication\\Aplication.csproj|solutionrelative:aplication\\interfaces\\idishservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E946B9D7-0EBC-48C9-B44C-51B178C32000}|Aplication\\Aplication.csproj|c:\\users\\aleja\\desktop\\carpetas\\trabajos practicos(unaj)\\proyecto software\\tp1\\codigo tp1\\restaurante\\aplication\\responses\\dishresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E946B9D7-0EBC-48C9-B44C-51B178C32000}|Aplication\\Aplication.csproj|solutionrelative:aplication\\responses\\dishresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E946B9D7-0EBC-48C9-B44C-51B178C32000}|Aplication\\Aplication.csproj|c:\\users\\aleja\\desktop\\carpetas\\trabajos practicos(unaj)\\proyecto software\\tp1\\codigo tp1\\restaurante\\aplication\\models\\dishupdatemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E946B9D7-0EBC-48C9-B44C-51B178C32000}|Aplication\\Aplication.csproj|solutionrelative:aplication\\models\\dishupdatemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E946B9D7-0EBC-48C9-B44C-51B178C32000}|Aplication\\Aplication.csproj|c:\\users\\aleja\\desktop\\carpetas\\trabajos practicos(unaj)\\proyecto software\\tp1\\codigo tp1\\restaurante\\aplication\\models\\dishmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E946B9D7-0EBC-48C9-B44C-51B178C32000}|Aplication\\Aplication.csproj|solutionrelative:aplication\\models\\dishmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF92E2F5-08D6-476F-9ADC-46DCDAFF4EFC}|Infraesructure\\Infraesructure.csproj|c:\\users\\aleja\\desktop\\carpetas\\trabajos practicos(unaj)\\proyecto software\\tp1\\codigo tp1\\restaurante\\infraesructure\\querys\\dishquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF92E2F5-08D6-476F-9ADC-46DCDAFF4EFC}|Infraesructure\\Infraesructure.csproj|solutionrelative:infraesructure\\querys\\dishquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E946B9D7-0EBC-48C9-B44C-51B178C32000}|Aplication\\Aplication.csproj|c:\\users\\aleja\\desktop\\carpetas\\trabajos practicos(unaj)\\proyecto software\\tp1\\codigo tp1\\restaurante\\aplication\\interfaces\\idishquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E946B9D7-0EBC-48C9-B44C-51B178C32000}|Aplication\\Aplication.csproj|solutionrelative:aplication\\interfaces\\idishquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Dish.cs",
+              "DocumentMoniker": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\domain\\Entities\\Dish.cs",
+              "RelativeDocumentMoniker": "domain\\Entities\\Dish.cs",
+              "ToolTip": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\domain\\Entities\\Dish.cs",
+              "RelativeToolTip": "domain\\Entities\\Dish.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T02:24:47.794Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DishModel.cs",
+              "DocumentMoniker": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Aplication\\Models\\DishModel.cs",
+              "RelativeDocumentMoniker": "Aplication\\Models\\DishModel.cs",
+              "ToolTip": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Aplication\\Models\\DishModel.cs",
+              "RelativeToolTip": "Aplication\\Models\\DishModel.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T02:07:31.223Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DishUpdateModel.cs",
+              "DocumentMoniker": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Aplication\\Models\\DishUpdateModel.cs",
+              "RelativeDocumentMoniker": "Aplication\\Models\\DishUpdateModel.cs",
+              "ToolTip": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Aplication\\Models\\DishUpdateModel.cs",
+              "RelativeToolTip": "Aplication\\Models\\DishUpdateModel.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T02:07:27.233Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DishCommand.cs",
+              "DocumentMoniker": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Infraesructure\\Command\\DishCommand.cs",
+              "RelativeDocumentMoniker": "Infraesructure\\Command\\DishCommand.cs",
+              "ToolTip": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Infraesructure\\Command\\DishCommand.cs",
+              "RelativeToolTip": "Infraesructure\\Command\\DishCommand.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T00:24:05.658Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DishResponse.cs",
+              "DocumentMoniker": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Aplication\\Responses\\DishResponse.cs",
+              "RelativeDocumentMoniker": "Aplication\\Responses\\DishResponse.cs",
+              "ToolTip": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Aplication\\Responses\\DishResponse.cs",
+              "RelativeToolTip": "Aplication\\Responses\\DishResponse.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwAoAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T20:15:21.722Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DishService.cs",
+              "DocumentMoniker": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Aplication\\Service\\DishService.cs",
+              "RelativeDocumentMoniker": "Aplication\\Service\\DishService.cs",
+              "ToolTip": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Aplication\\Service\\DishService.cs",
+              "RelativeToolTip": "Aplication\\Service\\DishService.cs",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAqwKQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T21:20:54.264Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IDishService.cs",
+              "DocumentMoniker": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Aplication\\Interfaces\\IDishService.cs",
+              "RelativeDocumentMoniker": "Aplication\\Interfaces\\IDishService.cs",
+              "ToolTip": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Aplication\\Interfaces\\IDishService.cs",
+              "RelativeToolTip": "Aplication\\Interfaces\\IDishService.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAuwBIAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T17:53:54.23Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DishController.cs",
+              "DocumentMoniker": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Restaurante\\Controllers\\DishController.cs",
+              "RelativeDocumentMoniker": "Restaurante\\Controllers\\DishController.cs",
+              "ToolTip": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Restaurante\\Controllers\\DishController.cs",
+              "RelativeToolTip": "Restaurante\\Controllers\\DishController.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAMwEEAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-04T19:47:45.111Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IDishQuery.cs",
+              "DocumentMoniker": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Aplication\\Interfaces\\IDishQuery.cs",
+              "RelativeDocumentMoniker": "Aplication\\Interfaces\\IDishQuery.cs",
+              "ToolTip": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Aplication\\Interfaces\\IDishQuery.cs",
+              "RelativeToolTip": "Aplication\\Interfaces\\IDishQuery.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAswBEAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T00:46:30.907Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DishQuery.cs",
+              "DocumentMoniker": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Infraesructure\\Querys\\DishQuery.cs",
+              "RelativeDocumentMoniker": "Infraesructure\\Querys\\DishQuery.cs",
+              "ToolTip": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Infraesructure\\Querys\\DishQuery.cs",
+              "RelativeToolTip": "Infraesructure\\Querys\\DishQuery.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAYwCgAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T00:47:20.838Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
