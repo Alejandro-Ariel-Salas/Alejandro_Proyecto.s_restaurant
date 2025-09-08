@@ -294,6 +294,20 @@
         },
         "additionalProperties": false
       },
+      "CategoryResponse": {
+        "type": "object",
+        "properties": {
+          "categoryId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "DishModel": {
         "type": "object",
         "properties": {
@@ -342,9 +356,8 @@
           "available": {
             "type": "boolean"
           },
-          "categoryId": {
-            "type": "integer",
-            "format": "int32"
+          "category": {
+            "$ref": "#/components/schemas/CategoryResponse"
           },
           "imageUrl": {
             "type": "string",

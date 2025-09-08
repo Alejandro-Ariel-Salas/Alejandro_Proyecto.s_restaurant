@@ -13,9 +13,15 @@ namespace Aplication.Responses
         public string Description { get; set; }
         public decimal Price { get; set; }
         public bool Available { get; set; }
-        public int CategoryId { get; set; }
+        public CategoryResponse Category { get; set; }
         public string ImageUrl { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }
+    }
+
+    public class CategoryResponse
+    {
+        public int CategoryId { get; set; }
+        public string Name { get; set; }
     }
 }

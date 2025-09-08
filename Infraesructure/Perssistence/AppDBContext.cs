@@ -29,7 +29,7 @@ namespace Infraesructure.Perssistence
                 entity.ToTable("Status");
                 entity.HasKey(e => e.StatusId);
                 entity.Property(e => e.StatusId).ValueGeneratedOnAdd();
-                entity.Property(e => e.Name).IsRequired().HasMaxLength(25);
+                entity.Property(e => e.Name).HasColumnType("varchar(25)").IsRequired();
                 entity.HasMany(e => e.Orders).WithOne(e => e.Status).HasForeignKey(e => e.OverallStatus).OnDelete(DeleteBehavior.NoAction);
                 entity.HasMany(e => e.OrderItems).WithOne(e => e.Status).HasForeignKey(e => e.StatusId).OnDelete(DeleteBehavior.NoAction);
 
@@ -47,8 +47,8 @@ namespace Infraesructure.Perssistence
                 entity.ToTable("Category");
                 entity.HasKey(e => e.CategoryId);
                 entity.Property(e => e.CategoryId).ValueGeneratedOnAdd();
-                entity.Property(e => e.Name).IsRequired().HasMaxLength(25);
-                entity.Property(e => e.Description).HasMaxLength(255);
+                entity.Property(e => e.Name).HasColumnType("varchar(25)").IsRequired();
+                entity.Property(e => e.Description).HasColumnType("varchar(255)");
                 entity.HasMany(e => e.Dishes).WithOne(e => e.Category).HasForeignKey(e => e.CategoryId);
 
                 entity.HasData(
@@ -71,7 +71,7 @@ namespace Infraesructure.Perssistence
                 entity.ToTable("DeliveryType");
                 entity.HasKey(e => e.DeliveryTypeId);
                 entity.Property(e => e.DeliveryTypeId).ValueGeneratedOnAdd();
-                entity.Property(e => e.Name).IsRequired().HasMaxLength(25);
+                entity.Property(e => e.Name).HasColumnType("nvarchar(25)").IsRequired();
                 entity.HasMany(e => e.Orders).WithOne(e => e.DeliveryType).HasForeignKey(e => e.DeliveryTypeId);
 
                 entity.HasData(
@@ -85,10 +85,10 @@ namespace Infraesructure.Perssistence
             {
                 entity.ToTable("Order");
                 entity.HasKey(e => e.OrderId);
-                entity.Property(e => e.OrderId).ValueGeneratedOnAdd();
-                entity.Property(e => e.DeliveryTo).IsRequired().HasMaxLength(255);
+                entity.Property(e => e.DeliveryTo).HasColumnType("varchar(255)").IsRequired();
+                entity.Property(e => e.Notes).HasColumnType("varchar(MAX)");
                 entity.Property(e => e.OverallStatus).IsRequired();
-                entity.Property(e => e.Price).IsRequired().HasColumnType("decimal(10,2)");
+                entity.Property(e => e.Price).IsRequired().HasColumnType("decimal(18,2)");
                 entity.Property(e => e.CreateDate).HasDefaultValueSql("GETDATE()");
                 entity.Property(e => e.UpdateDate).HasDefaultValueSql("GETDATE()");
                 entity.HasMany(e => e.OrderItems).WithOne(e => e.Order).HasForeignKey(e => e.OrderId);
@@ -99,9 +99,10 @@ namespace Infraesructure.Perssistence
                 entity.ToTable("Dish");
                 entity.HasKey(e => e.DishId);
                 entity.Property(e => e.DishId).HasDefaultValueSql("NEWID()");
-                entity.Property(e => e.Name).IsRequired().HasMaxLength(255);
-                entity.Property(e => e.Description).HasMaxLength(255);
-                entity.Property(e => e.Price).IsRequired().HasColumnType("decimal(10,2)");
+                entity.Property(e => e.Name).HasColumnType("varchar(255)").IsRequired();
+                entity.Property(e => e.Description).HasColumnType("varchar(MAX)");
+                entity.Property(e => e.Price).IsRequired().HasColumnType("decimal(18,2)");
+                entity.Property(e => e.ImageUrl).HasColumnType("varchar(MAX)");
                 entity.Property(e => e.Available).IsRequired();
                 entity.Property(e => e.CreateDate).HasDefaultValueSql("GETDATE()");
                 entity.Property(e => e.UpdateDate).HasDefaultValueSql("GETDATE()");
@@ -112,11 +113,11 @@ namespace Infraesructure.Perssistence
             {
                 entity.ToTable("OrderItem");
                 entity.HasKey(e => e.OrderItemId);
+                entity.Property(e => e.Notes).HasColumnType("varchar(MAX)");
                 entity.Property(e => e.OrderItemId).ValueGeneratedOnAdd();
                 entity.Property(e => e.Quantity).IsRequired();
                 entity.Property(e => e.CreateDate).HasDefaultValueSql("GETDATE()");
             });
         }
-
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraesructure.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20250905181833_init")]
+    [Migration("20250907220219_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -35,13 +35,11 @@ namespace Infraesructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasColumnType("varchar(25)");
 
                     b.Property<int>("Order")
                         .HasColumnType("int");
@@ -133,7 +131,6 @@ namespace Infraesructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
                     b.HasKey("DeliveryTypeId");
@@ -166,9 +163,7 @@ namespace Infraesructure.Migrations
                         .HasDefaultValueSql("NEWID()");
 
                     b.Property<bool>("Available")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
+                        .HasColumnType("bit");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -180,20 +175,18 @@ namespace Infraesructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("varchar(MAX)");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(MAX)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("UpdateDate")
                         .ValueGeneratedOnAdd()
@@ -222,21 +215,20 @@ namespace Infraesructure.Migrations
 
                     b.Property<string>("DeliveryTo")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<int>("DeliveryTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Notes")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(MAX)");
 
                     b.Property<int>("OverallStatus")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("UpdateDate")
                         .ValueGeneratedOnAdd()
@@ -270,7 +262,7 @@ namespace Infraesructure.Migrations
 
                     b.Property<string>("Notes")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(MAX)");
 
                     b.Property<long>("OrderId")
                         .HasColumnType("bigint");
@@ -302,8 +294,7 @@ namespace Infraesructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasColumnType("varchar(25)");
 
                     b.HasKey("StatusId");
 

@@ -13,3 +13,4 @@ C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\C
 C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\Restaurante\Aplication\obj\Debug\net8.0\refint\Aplication.dll
 C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\Restaurante\Aplication\obj\Debug\net8.0\Aplication.pdb
 C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\Restaurante\Aplication\obj\Debug\net8.0\ref\Aplication.dll
+C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\Restaurante\Aplication\obj\Debug\net8.0\Aplication.sourcelink.json

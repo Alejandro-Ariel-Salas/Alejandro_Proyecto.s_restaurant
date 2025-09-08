@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 
 namespace Aplication.Service
 {
@@ -37,13 +38,19 @@ namespace Aplication.Service
                     ImageUrl = dishModel.ImageUrl,
                 };
                 await _dishCommand.InsertDish(dish);
+                var createdDish = await _dishQuery.GetDishById(dish.DishId);
+
                 var response = new DishResponse
                 {
                     DishId = dish.DishId,
                     Name = dish.Name,
                     Description = dish.Description,
                     Price = dish.Price,
-                    CategoryId = dish.CategoryId,
+                    Category = new CategoryResponse
+                    {
+                        CategoryId = createdDish.Category.CategoryId,
+                        Name = createdDish.Category.Name
+                    },
                     Available = dish.Available,
                     ImageUrl = dish.ImageUrl,
                     CreateDate = dish.CreateDate,
@@ -73,7 +80,7 @@ namespace Aplication.Service
             }
         }
 
-        public Task<Dish> deleteDish(Guid id)
+        public Task<Dish> DeleteDish(Guid id)
         {
             throw new NotImplementedException();
         }
@@ -85,9 +92,7 @@ namespace Aplication.Service
 
         public async Task<Dish> GetDishById(Guid id)
         {
-            var dish = await _dishQuery.GetDishById(id);
-
-            return dish;
+            throw new NotImplementedException();
         }
 
         public async Task<List<DishResponse>> GetDishes(string? name, int? category, EnumSort sort, bool dishAvailable)
@@ -101,7 +106,11 @@ namespace Aplication.Service
                     Name = d.Name,
                     Description = d.Description,
                     Price = d.Price,
-                    CategoryId = d.CategoryId,
+                    Category = new CategoryResponse
+                    {
+                        CategoryId = d.Category.CategoryId,
+                        Name = d.Category.Name
+                    },
                     Available = d.Available,
                     ImageUrl = d.ImageUrl,
                     CreateDate = d.CreateDate,
@@ -118,7 +127,11 @@ namespace Aplication.Service
                     Name = d.Name,
                     Description = d.Description,
                     Price = d.Price,
-                    CategoryId = d.CategoryId,
+                    Category = new CategoryResponse 
+                    { 
+                        CategoryId = d.Category.CategoryId, 
+                        Name = d.Category.Name 
+                    },
                     Available = d.Available,
                     ImageUrl = d.ImageUrl,
                     CreateDate = d.CreateDate,
@@ -127,11 +140,6 @@ namespace Aplication.Service
             }
 
             throw new ExceptionBadRequest("Parámetros de ordenamiento inválidos");
-        }
-
-        public Task<Dish> DeleteDish(Guid id)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<DishResponse> UpdateDish(Guid dishId, DishUpdateModel dish)
@@ -151,17 +159,16 @@ namespace Aplication.Service
                 throw new ExceptionBadRequest("El plato no existe.");
             }
 
-            await _dishCommand.UpdateDish(new Dish{
-                DishId = existingDish.DishId,
-                Name = dish.Name,
-                Description = dish.Description,
-                Price = dish.Price,
-                CategoryId = dish.Category,
-                Available = dish.IsActive,
-                ImageUrl = dish.Image,
-                CreateDate = existingDish.CreateDate,
-                UpdateDate = DateTime.UtcNow,
-            });
+            existingDish.Name = dish.Name;
+            existingDish.Description = dish.Description;
+            existingDish.Price = dish.Price;
+            existingDish.CategoryId = dish.Category;
+            existingDish.Available = dish.IsActive;
+            existingDish.ImageUrl = dish.Image;
+            existingDish.UpdateDate = DateTime.UtcNow;
+
+            await _dishCommand.UpdateDish(existingDish);
+            existingDish = await _dishQuery.GetDishById(dishId);
 
             return new DishResponse
             {
@@ -169,7 +176,11 @@ namespace Aplication.Service
                 Name = dish.Name,
                 Description = dish.Description,
                 Price = dish.Price,
-                CategoryId = dish.Category,
+                Category = new CategoryResponse
+                {
+                    CategoryId = existingDish.Category.CategoryId,
+                    Name = existingDish.Category.Name
+                },
                 Available = dish.IsActive,
                 ImageUrl = dish.Image,
                 CreateDate = existingDish.CreateDate,

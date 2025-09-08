@@ -175,3 +175,4 @@ C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\C
 C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\Restaurante\Restaurante\obj\Debug\net8.0\Restaurante.pdb
 C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\Restaurante\Restaurante\obj\Debug\net8.0\Restaurante.genruntimeconfig.cache
 C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\Restaurante\Restaurante\obj\Debug\net8.0\ref\Restaurante.dll
+C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\Restaurante\Restaurante\obj\Debug\net8.0\Restaurante.sourcelink.json

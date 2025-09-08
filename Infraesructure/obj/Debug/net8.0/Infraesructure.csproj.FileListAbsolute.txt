@@ -17,3 +17,4 @@ C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\C
 C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\Restaurante\Infraesructure\obj\Debug\net8.0\Infraesructure.pdb
 C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\Restaurante\Infraesructure\obj\Debug\net8.0\Infraesructure.genruntimeconfig.cache
 C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\Restaurante\Infraesructure\obj\Debug\net8.0\ref\Infraesructure.dll
+C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\Restaurante\Infraesructure\obj\Debug\net8.0\Infraesructure.sourcelink.json

@@ -19,8 +19,8 @@ namespace Infraesructure.Migrations
                 {
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Name = table.Column<string>(type: "varchar(25)", nullable: false),
+                    Description = table.Column<string>(type: "varchar(255)", nullable: false),
                     Order = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -34,7 +34,7 @@ namespace Infraesructure.Migrations
                 {
                     DeliveryTypeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(25)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,7 +47,7 @@ namespace Infraesructure.Migrations
                 {
                     StatusId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false)
+                    Name = table.Column<string>(type: "varchar(25)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -59,12 +59,12 @@ namespace Infraesructure.Migrations
                 columns: table => new
                 {
                     DishId = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
-                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    Available = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
+                    Name = table.Column<string>(type: "varchar(255)", nullable: false),
+                    Description = table.Column<string>(type: "varchar(MAX)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Available = table.Column<bool>(type: "bit", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "varchar(MAX)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
                 },
@@ -86,10 +86,10 @@ namespace Infraesructure.Migrations
                     OrderId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DeliveryTypeId = table.Column<int>(type: "int", nullable: false),
-                    DeliveryTo = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    DeliveryTo = table.Column<string>(type: "varchar(255)", nullable: false),
                     OverallStatus = table.Column<int>(type: "int", nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    Notes = table.Column<string>(type: "varchar(MAX)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
                 },
@@ -118,7 +118,7 @@ namespace Infraesructure.Migrations
                     OrderId = table.Column<long>(type: "bigint", nullable: false),
                     DishId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Notes = table.Column<string>(type: "varchar(MAX)", nullable: false),
                     StatusId = table.Column<int>(type: "int", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
                 },
