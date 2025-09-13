@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JVBl6J2hvWg=",
+  "dgSpecHash": "8Ab4HPh2O00=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Restaurante\\Restaurante.csproj",
+  "projectFilePath": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\TP1-Salas_Alejandro\\Restaurante\\Restaurante.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Aleja\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Aleja\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

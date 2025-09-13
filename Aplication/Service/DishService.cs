@@ -17,11 +17,20 @@ namespace Aplication.Service
     {
         private readonly IDishCommand _dishCommand;
         private readonly IDishQuery _dishQuery;
+        private readonly IOrderItemQuery _orderItemQuery;
+        private readonly IStatusQuery _statusQuery;
+        private readonly ICategoryQuery _categoryQuery;
+        private readonly IDeliveryTypeQuery _deliveryTypeQuery;
 
-        public DishService(IDishCommand dishCommand, IDishQuery dishQuery)
+
+        public DishService(IDishCommand dishCommand, IDishQuery dishQuery, IStatusQuery statusQuery, ICategoryQuery categoryQuery, IDeliveryTypeQuery deliveryTypeQuery)
         {
             _dishCommand = dishCommand;
             _dishQuery = dishQuery;
+            _orderItemQuery = _orderItemQuery;
+            _statusQuery = statusQuery;
+            _categoryQuery = categoryQuery;
+            _deliveryTypeQuery = deliveryTypeQuery;
         }
 
         public async Task<DishResponse> CreateDish(DishModel dishModel)
@@ -33,7 +42,7 @@ namespace Aplication.Service
                     Name = dishModel.Name,
                     Description = dishModel.Description,
                     Price = dishModel.Price,
-                    CategoryId = dishModel.CategoryId,
+                    Category = dishModel.Category,
                     Available = true,
                     ImageUrl = dishModel.ImageUrl,
                 };
@@ -48,10 +57,10 @@ namespace Aplication.Service
                     Price = dish.Price,
                     Category = new CategoryResponse
                     {
-                        CategoryId = createdDish.Category.CategoryId,
-                        Name = createdDish.Category.Name
+                        CategoryId = createdDish.Categorys.Id,
+                        Name = createdDish.Categorys.Name
                     },
-                    Available = dish.Available,
+                    IsActive = dish.Available,
                     ImageUrl = dish.ImageUrl,
                     CreateDate = dish.CreateDate,
                     UpdateDate = dish.UpdateDate,
@@ -73,26 +82,84 @@ namespace Aplication.Service
                 throw new ExceptionBadRequest("El precio del plato debe ser mayor a cero.");
             }
 
-            var categoryExists = await _dishQuery.ExistCategory(dish.CategoryId);
+            var categoryExists = await _dishQuery.ExistCategory(dish.Category);
             if (!categoryExists)
             {
                 throw new ExceptionBadRequest("La categoria no existe.");
             }
         }
 
-        public Task<Dish> DeleteDish(Guid id)
+        public async Task<DishResponse> DeleteDish(Guid id)
+        {
+            var dish = await _dishQuery.GetDishById(id);
+            var orderItems = await _orderItemQuery.GetOrderItemsByDishId(id);
+
+            if (dish == null)
+            {
+                throw new ExeptionNotFound("Plato no encontrado");
+            }
+
+            if (orderItems != null)
+            {
+                throw new ExceptionConflict("No se puede eliminar el plato porque está incluido en órdenes activas");
+            }
+
+            dish.Available = false;
+            await _dishCommand.UpdateDish(dish);
+
+            return new DishResponse
+            {
+                DishId = dish.DishId,
+                Name = dish.Name,
+                Description = dish.Description,
+                Price = dish.Price,
+                Category = new CategoryResponse
+                {
+                    CategoryId = dish.Categorys.Id,
+                    Name = dish.Categorys.Name
+                },
+                IsActive = false,
+                ImageUrl = dish.ImageUrl,
+                CreateDate = dish.CreateDate,
+                UpdateDate = dish.UpdateDate,
+            };
+        }
+
+        public Task<List<DishResponse>> GetAllDishes()
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<Dish>> GetAllDishes()
+        public async Task<DishResponse> GetDishById(Guid id)
         {
-            throw new NotImplementedException();
-        }
+            if (id == Guid.Empty)
+            {
+                throw new ExceptionBadRequest("Formato de ID inválido");
+            }
 
-        public async Task<Dish> GetDishById(Guid id)
-        {
-            throw new NotImplementedException();
+            var dish = await _dishQuery.GetDishById(id);
+
+            if (dish == null)
+            {
+                throw new ExeptionNotFound("Plato no encontrado");
+            }
+
+            return new DishResponse
+            {
+                DishId = dish.DishId,
+                Name = dish.Name,
+                Description = dish.Description,
+                Price = dish.Price,
+                Category = new CategoryResponse
+                {
+                    CategoryId = dish.Categorys.Id,
+                    Name = dish.Categorys.Name
+                },
+                IsActive = dish.Available,
+                ImageUrl = dish.ImageUrl,
+                CreateDate = dish.CreateDate,
+                UpdateDate = dish.UpdateDate,
+            };
         }
 
         public async Task<List<DishResponse>> GetDishes(string? name, int? category, EnumSort sort, bool dishAvailable)
@@ -108,10 +175,10 @@ namespace Aplication.Service
                     Price = d.Price,
                     Category = new CategoryResponse
                     {
-                        CategoryId = d.Category.CategoryId,
-                        Name = d.Category.Name
+                        CategoryId = d.Categorys.Id,
+                        Name = d.Categorys.Name
                     },
-                    Available = d.Available,
+                    IsActive = d.Available,
                     ImageUrl = d.ImageUrl,
                     CreateDate = d.CreateDate,
                     UpdateDate = d.UpdateDate,
@@ -129,10 +196,10 @@ namespace Aplication.Service
                     Price = d.Price,
                     Category = new CategoryResponse 
                     { 
-                        CategoryId = d.Category.CategoryId, 
-                        Name = d.Category.Name 
+                        CategoryId = d.Categorys.Id, 
+                        Name = d.Categorys.Name 
                     },
-                    Available = d.Available,
+                    IsActive = d.Available,
                     ImageUrl = d.ImageUrl,
                     CreateDate = d.CreateDate,
                     UpdateDate = d.UpdateDate,
@@ -149,7 +216,7 @@ namespace Aplication.Service
                 Name = dish.Name,
                 Description = dish.Description,
                 Price = dish.Price,
-                CategoryId = dish.Category,
+                Category = dish.Category,
                 ImageUrl = dish.Image,
             });
 
@@ -162,7 +229,7 @@ namespace Aplication.Service
             existingDish.Name = dish.Name;
             existingDish.Description = dish.Description;
             existingDish.Price = dish.Price;
-            existingDish.CategoryId = dish.Category;
+            existingDish.Category = dish.Category;
             existingDish.Available = dish.IsActive;
             existingDish.ImageUrl = dish.Image;
             existingDish.UpdateDate = DateTime.UtcNow;
@@ -178,15 +245,47 @@ namespace Aplication.Service
                 Price = dish.Price,
                 Category = new CategoryResponse
                 {
-                    CategoryId = existingDish.Category.CategoryId,
-                    Name = existingDish.Category.Name
+                    CategoryId = existingDish.Categorys.Id,
+                    Name = existingDish.Categorys.Name
                 },
-                Available = dish.IsActive,
+                IsActive = dish.IsActive,
                 ImageUrl = dish.Image,
                 CreateDate = existingDish.CreateDate,
                 UpdateDate = DateTime.UtcNow,
             };
 
+        }
+
+        public async Task<List<CategorysResponse>> GetAllCategory()
+        {
+            var categories = await _categoryQuery.GetAllCategories();
+            return categories.Select(c => new CategorysResponse
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Description = c.Description,
+                Order = c.Order
+            }).ToList();
+        }
+
+        public async Task<List<DeliveryTypeResponse>> GetAllDeliveryType()
+        {
+            var deliveryTypes = await _deliveryTypeQuery.GetAllDeliveryTypes();
+            return deliveryTypes.Select(dt => new DeliveryTypeResponse
+            {
+                Id = dt.Id,
+                Name = dt.Name
+            }).ToList();
+        }
+
+        public async Task<List<StatusResponse>> GetAllStatus()
+        {
+            var statuses = await _statusQuery.GetAllStatus();
+            return statuses.Select(s => new StatusResponse
+            {
+                Id = s.Id,
+                Name = s.Name
+            }).ToList();
         }
     }
 }

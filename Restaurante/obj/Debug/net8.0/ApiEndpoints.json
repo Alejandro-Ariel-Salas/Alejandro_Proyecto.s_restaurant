@@ -1,20 +1,15 @@
 [
   {
     "ContainingType": "Restaurante.Controllers.DishController",
-    "Method": "UpdateDish",
-    "RelativePath": "api/Dish/Actualizar un plato",
-    "HttpMethod": "PUT",
+    "Method": "CreateDish",
+    "RelativePath": "api/Dish",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "dish_Id",
-        "Type": "System.Guid",
-        "IsRequired": false
-      },
-      {
-        "Name": "dish",
-        "Type": "Aplication.Models.DishUpdateModel",
+        "Name": "dishModel",
+        "Type": "Aplication.Models.DishModel",
         "IsRequired": true
       }
     ],
@@ -51,7 +46,7 @@
   {
     "ContainingType": "Restaurante.Controllers.DishController",
     "Method": "SearchDishes",
-    "RelativePath": "api/Dish/Buscar Platos",
+    "RelativePath": "api/Dish",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -100,15 +95,20 @@
   },
   {
     "ContainingType": "Restaurante.Controllers.DishController",
-    "Method": "CreateDish",
-    "RelativePath": "api/Dish/Crear un Nuevo Plato",
-    "HttpMethod": "POST",
+    "Method": "Update",
+    "RelativePath": "api/Dish/{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "dishModel",
-        "Type": "Aplication.Models.DishModel",
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "dish",
+        "Type": "Aplication.Models.DishUpdateModel",
         "IsRequired": true
       }
     ],
@@ -139,6 +139,138 @@
           "text/json"
         ],
         "StatusCode": 409
+      }
+    ]
+  },
+  {
+    "ContainingType": "Restaurante.Controllers.DishController",
+    "Method": "Delete",
+    "RelativePath": "api/Dish/{id}",
+    "HttpMethod": "OPTIONS",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Aplication.Responses.ApiError",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      },
+      {
+        "Type": "Aplication.Responses.ApiError",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 409
+      }
+    ]
+  },
+  {
+    "ContainingType": "Restaurante.Controllers.DishController",
+    "Method": "GetById",
+    "RelativePath": "api/Dish/{Id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Aplication.Responses.DishResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Aplication.Responses.ApiError",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      },
+      {
+        "Type": "Aplication.Responses.ApiError",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      }
+    ]
+  },
+  {
+    "ContainingType": "Restaurante.Controllers.DishController",
+    "Method": "GetCategorys",
+    "RelativePath": "api/Dish/Category",
+    "HttpMethod": "OPTIONS",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Restaurante.Controllers.DishController",
+    "Method": "GetDeliveryTypes",
+    "RelativePath": "api/Dish/DeliveryType",
+    "HttpMethod": "OPTIONS",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Restaurante.Controllers.DishController",
+    "Method": "GetStatus",
+    "RelativePath": "api/Dish/Status",
+    "HttpMethod": "OPTIONS",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
       }
     ]
   }

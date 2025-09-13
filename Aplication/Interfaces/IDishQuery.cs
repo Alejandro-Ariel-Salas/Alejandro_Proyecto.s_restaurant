@@ -13,8 +13,8 @@ namespace Aplication.Interfaces
         Task<List<Dish>> GetAllDishes();
         Task<Dish> GetDishById(Guid DishId);
         Task<Dish> GetDishByName(string name);
-        Task<List<Dish>> GetByCategoryId(int categoryId, bool available, EnumSort sort);
+        Task<List<Dish>> GetByCategoryId(int Id, bool available, EnumSort sort);
         Task<List<Dish>> GetDishesByName(string name, bool available, EnumSort sort);
-        Task<bool> ExistCategory(int categoryId);
+        Task<bool> ExistCategory(int Id);
     }
 }

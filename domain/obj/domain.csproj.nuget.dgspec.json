@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\domain\\domain.csproj": {}
+    "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\TP1-Salas_Alejandro\\domain\\domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\domain\\domain.csproj": {
+    "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\TP1-Salas_Alejandro\\domain\\domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\domain\\domain.csproj",
+        "projectUniqueName": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\TP1-Salas_Alejandro\\domain\\domain.csproj",
         "projectName": "domain",
-        "projectPath": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\domain\\domain.csproj",
+        "projectPath": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\TP1-Salas_Alejandro\\domain\\domain.csproj",
         "packagesPath": "C:\\Users\\Aleja\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\domain\\obj\\",
+        "outputPath": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\TP1-Salas_Alejandro\\domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

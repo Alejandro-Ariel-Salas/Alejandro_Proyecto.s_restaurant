@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraesructure.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20250907220219_init")]
+    [Migration("20250909010439_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -27,11 +27,11 @@ namespace Infraesructure.Migrations
 
             modelBuilder.Entity("domain.Entities.Category", b =>
                 {
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -44,77 +44,77 @@ namespace Infraesructure.Migrations
                     b.Property<int>("Order")
                         .HasColumnType("int");
 
-                    b.HasKey("CategoryId");
+                    b.HasKey("Id");
 
                     b.ToTable("Category", (string)null);
 
                     b.HasData(
                         new
                         {
-                            CategoryId = 1,
+                            Id = 1,
                             Description = "Pequeñas porciones para abrir el apetito antes del plato principal.",
                             Name = "Entradas",
                             Order = 1
                         },
                         new
                         {
-                            CategoryId = 2,
+                            Id = 2,
                             Description = "Opciones frescas y livianas, ideales como acompañamiento o plato principal.",
                             Name = "Ensaladas",
                             Order = 2
                         },
                         new
                         {
-                            CategoryId = 3,
+                            Id = 3,
                             Description = "Platos rápidos y clásicos de bodegón: milanesas, tortillas, revueltos.",
                             Name = "Minutas",
                             Order = 3
                         },
                         new
                         {
-                            CategoryId = 4,
+                            Id = 4,
                             Description = "Variedad de pastas caseras y salsas tradicionales.",
                             Name = "Pastas",
                             Order = 4
                         },
                         new
                         {
-                            CategoryId = 5,
+                            Id = 5,
                             Description = "Cortes de carne asados a la parrilla, servidos con guarniciones.",
                             Name = "Parrilla",
                             Order = 5
                         },
                         new
                         {
-                            CategoryId = 6,
+                            Id = 6,
                             Description = "Pizzas artesanales con masa casera y variedad de ingredientes.",
                             Name = "Pizzas",
                             Order = 6
                         },
                         new
                         {
-                            CategoryId = 7,
+                            Id = 7,
                             Description = "Sandwiches y lomitos completos preparados al momento.",
                             Name = "Sandwiches",
                             Order = 7
                         },
                         new
                         {
-                            CategoryId = 8,
+                            Id = 8,
                             Description = "Gaseosas, jugos, aguas y opciones sin alcohol.",
                             Name = "Bebidas",
                             Order = 8
                         },
                         new
                         {
-                            CategoryId = 9,
+                            Id = 9,
                             Description = "Cervezas de producción artesanal, rubias, rojas y negras.",
                             Name = "Cerveza Artesanal",
                             Order = 9
                         },
                         new
                         {
-                            CategoryId = 10,
+                            Id = 10,
                             Description = "Clásicos dulces caseros para cerrar la comida.",
                             Name = "Postres",
                             Order = 10
@@ -123,34 +123,34 @@ namespace Infraesructure.Migrations
 
             modelBuilder.Entity("domain.Entities.DeliveryType", b =>
                 {
-                    b.Property<int>("DeliveryTypeId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DeliveryTypeId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(25)");
 
-                    b.HasKey("DeliveryTypeId");
+                    b.HasKey("Id");
 
                     b.ToTable("DeliveryType", (string)null);
 
                     b.HasData(
                         new
                         {
-                            DeliveryTypeId = 1,
+                            Id = 1,
                             Name = "Delivery"
                         },
                         new
                         {
-                            DeliveryTypeId = 2,
+                            Id = 2,
                             Name = "Take away"
                         },
                         new
                         {
-                            DeliveryTypeId = 3,
+                            Id = 3,
                             Name = "Dine in"
                         });
                 });
@@ -165,7 +165,7 @@ namespace Infraesructure.Migrations
                     b.Property<bool>("Available")
                         .HasColumnType("bit");
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("Category")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDate")
@@ -195,7 +195,7 @@ namespace Infraesructure.Migrations
 
                     b.HasKey("DishId");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("Category");
 
                     b.ToTable("Dish", (string)null);
                 });
@@ -217,7 +217,7 @@ namespace Infraesructure.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(255)");
 
-                    b.Property<int>("DeliveryTypeId")
+                    b.Property<int>("DeliveryType")
                         .HasColumnType("int");
 
                     b.Property<string>("Notes")
@@ -237,7 +237,7 @@ namespace Infraesructure.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("DeliveryTypeId");
+                    b.HasIndex("DeliveryType");
 
                     b.HasIndex("OverallStatus");
 
@@ -246,104 +246,104 @@ namespace Infraesructure.Migrations
 
             modelBuilder.Entity("domain.Entities.OrderItem", b =>
                 {
-                    b.Property<int>("OrderItemId")
+                    b.Property<long>("OrderItemId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderItemId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("OrderItemId"));
 
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<Guid>("DishId")
+                    b.Property<Guid>("Dish")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Notes")
                         .IsRequired()
                         .HasColumnType("varchar(MAX)");
 
-                    b.Property<long>("OrderId")
+                    b.Property<long>("Order")
                         .HasColumnType("bigint");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("StatusId")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("OrderItemId");
 
-                    b.HasIndex("DishId");
+                    b.HasIndex("Dish");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("Order");
 
-                    b.HasIndex("StatusId");
+                    b.HasIndex("Status");
 
                     b.ToTable("OrderItem", (string)null);
                 });
 
             modelBuilder.Entity("domain.Entities.Status", b =>
                 {
-                    b.Property<int>("StatusId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StatusId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("varchar(25)");
 
-                    b.HasKey("StatusId");
+                    b.HasKey("Id");
 
                     b.ToTable("Status", (string)null);
 
                     b.HasData(
                         new
                         {
-                            StatusId = 1,
+                            Id = 1,
                             Name = "Pending"
                         },
                         new
                         {
-                            StatusId = 2,
+                            Id = 2,
                             Name = "In progress"
                         },
                         new
                         {
-                            StatusId = 3,
+                            Id = 3,
                             Name = "Ready"
                         },
                         new
                         {
-                            StatusId = 4,
+                            Id = 4,
                             Name = "Delivery"
                         },
                         new
                         {
-                            StatusId = 5,
+                            Id = 5,
                             Name = "Closed"
                         });
                 });
 
             modelBuilder.Entity("domain.Entities.Dish", b =>
                 {
-                    b.HasOne("domain.Entities.Category", "Category")
+                    b.HasOne("domain.Entities.Category", "Categorys")
                         .WithMany("Dishes")
-                        .HasForeignKey("CategoryId")
+                        .HasForeignKey("Category")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Category");
+                    b.Navigation("Categorys");
                 });
 
             modelBuilder.Entity("domain.Entities.Order", b =>
                 {
-                    b.HasOne("domain.Entities.DeliveryType", "DeliveryType")
+                    b.HasOne("domain.Entities.DeliveryType", "DeliveryTypes")
                         .WithMany("Orders")
-                        .HasForeignKey("DeliveryTypeId")
+                        .HasForeignKey("DeliveryType")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -353,36 +353,36 @@ namespace Infraesructure.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.Navigation("DeliveryType");
+                    b.Navigation("DeliveryTypes");
 
                     b.Navigation("Status");
                 });
 
             modelBuilder.Entity("domain.Entities.OrderItem", b =>
                 {
-                    b.HasOne("domain.Entities.Dish", "Dish")
+                    b.HasOne("domain.Entities.Dish", "Dishes")
                         .WithMany("OrderItems")
-                        .HasForeignKey("DishId")
+                        .HasForeignKey("Dish")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("domain.Entities.Order", "Order")
+                    b.HasOne("domain.Entities.Order", "Orders")
                         .WithMany("OrderItems")
-                        .HasForeignKey("OrderId")
+                        .HasForeignKey("Order")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("domain.Entities.Status", "Status")
+                    b.HasOne("domain.Entities.Status", "Statuses")
                         .WithMany("OrderItems")
-                        .HasForeignKey("StatusId")
+                        .HasForeignKey("Status")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.Navigation("Dish");
+                    b.Navigation("Dishes");
 
-                    b.Navigation("Order");
+                    b.Navigation("Orders");
 
-                    b.Navigation("Status");
+                    b.Navigation("Statuses");
                 });
 
             modelBuilder.Entity("domain.Entities.Category", b =>

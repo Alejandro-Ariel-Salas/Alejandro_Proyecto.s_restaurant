@@ -9,8 +9,8 @@ namespace domain.Entities
     public class Order
     {
         public long OrderId { get; set; }
-        public int DeliveryTypeId { get; set; }
-        public DeliveryType DeliveryType { get; set; }
+        public int DeliveryType { get; set; }
+        public DeliveryType DeliveryTypes { get; set; }
         public string DeliveryTo { get; set; }
         public int OverallStatus { get; set; }
         public Status Status { get; set; }

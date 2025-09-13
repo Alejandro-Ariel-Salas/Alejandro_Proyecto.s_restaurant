@@ -13,8 +13,8 @@ namespace domain.Entities
         public string Description { get; set; }
         public decimal Price { get; set; }
         public bool Available { get; set; }
-        public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public int Category { get; set; }
+        public Category Categorys { get; set; }
         public string ImageUrl { get; set; }
         public DateTime CreateDate { get; set; }    
         public DateTime UpdateDate { get; set; }

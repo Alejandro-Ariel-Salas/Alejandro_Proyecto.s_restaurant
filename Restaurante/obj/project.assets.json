@@ -5184,11 +5184,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Restaurante\\Restaurante.csproj",
+      "projectUniqueName": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\TP1-Salas_Alejandro\\Restaurante\\Restaurante.csproj",
       "projectName": "Restaurante",
-      "projectPath": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Restaurante\\Restaurante.csproj",
+      "projectPath": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\TP1-Salas_Alejandro\\Restaurante\\Restaurante.csproj",
       "packagesPath": "C:\\Users\\Aleja\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Restaurante\\obj\\",
+      "outputPath": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\TP1-Salas_Alejandro\\Restaurante\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5209,8 +5209,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Infraesructure\\Infraesructure.csproj": {
-              "projectPath": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\Restaurante\\Infraesructure\\Infraesructure.csproj"
+            "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\TP1-Salas_Alejandro\\Infraesructure\\Infraesructure.csproj": {
+              "projectPath": "C:\\Users\\Aleja\\Desktop\\Carpetas\\trabajos practicos(unaj)\\Proyecto Software\\TP1\\Codigo TP1\\TP1-Salas_Alejandro\\Infraesructure\\Infraesructure.csproj"
             }
           }
         }

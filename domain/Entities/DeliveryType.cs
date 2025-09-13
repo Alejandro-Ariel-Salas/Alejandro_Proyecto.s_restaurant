@@ -8,7 +8,7 @@ namespace domain.Entities
 {
     public class DeliveryType
     {
-        public int DeliveryTypeId { get; set;}
+        public int Id { get; set;}
         public string Name {get; set;}
 
         public IList<Order> Orders { get; set; }

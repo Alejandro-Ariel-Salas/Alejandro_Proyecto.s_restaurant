@@ -27,29 +27,29 @@ namespace Infraesructure.Querys
 
         }
 
-        public async Task<List<Dish>> GetByCategoryId(int categoryId, bool available, EnumSort sort)
+        public async Task<List<Dish>> GetByCategoryId(int Id, bool available, EnumSort sort)
         {
             if (sort == EnumSort.asc)
             {
-                var dishes = await _context.dishes.Where(d => d.CategoryId == categoryId && d.Available == available).Include(d => d.Category).OrderBy(d => d.Price).ToListAsync();
+                var dishes = await _context.dishes.Where(d => d.Category == Id && d.Available == available).Include(d => d.Categorys).OrderBy(d => d.Price).ToListAsync();
                 return dishes;
             }
             else
             {
-                var dishes = await _context.dishes.Where(d => d.CategoryId == categoryId && d.Available == available).Include(d => d.Category).OrderByDescending(d => d.Price).ToListAsync();
+                var dishes = await _context.dishes.Where(d => d.Category == Id && d.Available == available).Include(d => d.Categorys).OrderByDescending(d => d.Price).ToListAsync();
                 return dishes;
             }
         }
 
         public async Task<Dish> GetDishById(Guid DishId)
         {
-            var dish = await _context.dishes.Include(d => d.Category).FirstOrDefaultAsync(d => d.DishId == DishId);
+            var dish = await _context.dishes.Include(d => d.Categorys).FirstOrDefaultAsync(d => d.DishId == DishId);
             return dish;
         }
 
         public async Task<Dish> GetDishByName(string name)
         {
-            var dish = await _context.dishes.Include(d => d.Category).FirstOrDefaultAsync(d => d.Name == name);
+            var dish = await _context.dishes.Include(d => d.Categorys).FirstOrDefaultAsync(d => d.Name == name);
             return dish;
         }
 
@@ -57,19 +57,19 @@ namespace Infraesructure.Querys
         {
             if (sort == EnumSort.asc)
             {
-                var dishes = await _context.dishes.Where(d => d.Name.ToLower().Contains(name.ToLower()) && d.Available == available).Include(d => d.Category).OrderBy(d => d.Price).ToListAsync();
+                var dishes = await _context.dishes.Where(d => d.Name.ToLower().Contains(name.ToLower()) && d.Available == available).Include(d => d.Categorys).OrderBy(d => d.Price).ToListAsync();
                 return dishes;
             }
             else
             {
-                var dishes = await _context.dishes.Where(d => d.Name.ToLower().Contains(name.ToLower()) && d.Available == available).Include(d => d.Category).OrderByDescending(d => d.Price).ToListAsync();
+                var dishes = await _context.dishes.Where(d => d.Name.ToLower().Contains(name.ToLower()) && d.Available == available).Include(d => d.Categorys).OrderByDescending(d => d.Price).ToListAsync();
                 return dishes;
             }
         }
 
-        public async Task<bool> ExistCategory(int categoryId)
+        public async Task<bool> ExistCategory(int Id)
         {
-            var exist = await _context.categories.AnyAsync(c => c.CategoryId == categoryId);
+            var exist = await _context.categories.AnyAsync(c => c.Id == Id);
             return exist;
         }
     }

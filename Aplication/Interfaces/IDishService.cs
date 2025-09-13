@@ -13,11 +13,14 @@ namespace Aplication.Interfaces
     public interface IDishService
     {
         Task<DishResponse> CreateDish(DishModel createDishRequest);
-        Task<Dish> DeleteDish(Guid id);
+        Task<DishResponse> DeleteDish(Guid id);
         Task<DishResponse> UpdateDish(Guid dishId,DishUpdateModel dish);
-        Task<List<Dish>> GetAllDishes();
-        Task<Dish> GetDishById(Guid id);
+        Task<List<DishResponse>> GetAllDishes();
+        Task<DishResponse> GetDishById(Guid id);
         Task DishValidation(DishModel dish);
         Task<List<DishResponse>> GetDishes(string? name, int? category, EnumSort sort, bool dishAvailable);
+        Task<List<CategorysResponse>> GetAllCategory();
+        Task<List<DeliveryTypeResponse>> GetAllDeliveryType();
+        Task<List<StatusResponse>> GetAllStatus();
     }
 }
