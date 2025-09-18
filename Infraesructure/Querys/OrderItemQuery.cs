@@ -23,10 +23,5 @@ namespace Infraesructure.Querys
             var orderItems = await _context.orderItems.Where(oi => oi.Dish == dishId && oi.Orders.OverallStatus != 5).Include(oi => oi.Order).ToListAsync();
             return orderItems;
         }
-
-        public Task<List<OrderItem>> GetOrderItemsByOrderId(long orderId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

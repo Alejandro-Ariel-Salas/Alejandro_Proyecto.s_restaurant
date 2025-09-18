@@ -10,6 +10,5 @@ namespace Aplication.Interfaces
     public interface IOrderItemQuery
     {
         Task<List<OrderItem>> GetOrderItemsByDishId(Guid dishId);
-        Task<List<OrderItem>> GetOrderItemsByOrderId(long orderId); 
     }
 }

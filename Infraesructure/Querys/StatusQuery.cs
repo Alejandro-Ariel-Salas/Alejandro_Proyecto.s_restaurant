@@ -19,6 +19,11 @@ namespace Infraesructure.Querys
             _context = context;
         }
 
+        public Task<bool> ExistEstatus(int id)
+        {
+            return _context.statuses.AnyAsync(s => s.Id == id);
+        }
+
         public async Task<List<Status>> GetAllStatus()
         {
             var Status = await _context.statuses.ToListAsync();

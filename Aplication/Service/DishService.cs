@@ -99,15 +99,7 @@ namespace Aplication.Service
                 throw new ExeptionNotFound("Plato no encontrado");
             }
 
-            if (orderItems != null)
-            {
-                throw new ExceptionConflict("No se puede eliminar el plato porque está incluido en órdenes activas");
-            }
-
-            dish.Available = false;
-            await _dishCommand.UpdateDish(dish);
-
-            return new DishResponse
+            var responseDish = new DishResponse
             {
                 DishId = dish.DishId,
                 Name = dish.Name,
@@ -123,6 +115,18 @@ namespace Aplication.Service
                 CreateDate = dish.CreateDate,
                 UpdateDate = dish.UpdateDate,
             };
+
+            if (orderItems != null)
+            {
+                dish.Available = false;
+                await _dishCommand.UpdateDish(dish);
+                throw new ExceptionConflict("No se puede eliminar el plato porque está incluido en órdenes activas");
+            }
+            if (orderItems == null )
+            {
+                await _dishCommand.DeleteDish(dish);
+            }
+            return responseDish;
         }
 
         public Task<List<DishResponse>> GetAllDishes()

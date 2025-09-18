@@ -20,13 +20,17 @@ builder.Services.AddDbContext<AppDBContext>(option => option.UseSqlServer(Coneti
 
 //Services
 builder.Services.AddScoped<IDishService, DishService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 //Commands
 builder.Services.AddScoped<IDishCommand, DishCommand>();
+builder.Services.AddScoped<IOrderCommand, OrderCommand>();
+builder.Services.AddScoped<IOrderItemCommand, OrderItemCommand>();
 
 //Querys
 builder.Services.AddScoped<IDishQuery, DishQuery>();
 builder.Services.AddScoped<IOrderItemQuery, OrderItemQuery>();
+builder.Services.AddScoped<IOrderQuery, OrderQuery>();
 builder.Services.AddScoped<ICategoryQuery, CategoryQuery>();
 builder.Services.AddScoped<IDeliveryTypeQuery, DeliveryTypeQuery>();
 builder.Services.AddScoped<IStatusQuery, StatusQuery>();

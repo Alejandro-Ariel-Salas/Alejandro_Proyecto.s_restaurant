@@ -8,5 +8,8 @@ namespace Aplication.Interfaces
 {
     public interface IOrderCommand
     {
+        Task InsertOrder(domain.Entities.Order order);
+        Task DeleteOrder(domain.Entities.Order order);
+        Task UpdateOrder(domain.Entities.Order order);
     }
 }

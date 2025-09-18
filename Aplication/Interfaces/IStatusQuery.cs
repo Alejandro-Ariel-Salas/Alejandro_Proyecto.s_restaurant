@@ -10,5 +10,6 @@ namespace Aplication.Interfaces
     public interface IStatusQuery
     {
         public Task<List<Status>> GetAllStatus();
+        public Task<bool> ExistEstatus(int id);
     }
 }
