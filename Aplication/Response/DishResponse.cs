@@ -8,20 +8,20 @@ namespace Aplication.Responses
 {
     public class DishResponse
     {
-        public Guid DishId { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
+        public GenericResponse Category { get; set; }
+        public string Image { get; set; }
         public bool IsActive { get; set; }
-        public CategoryResponse Category { get; set; }
-        public string ImageUrl { get; set; }
-        public DateTime CreateDate { get; set; }
-        public DateTime UpdateDate { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 
-    public class CategoryResponse
+    public class GenericResponse
     {
-        public int CategoryId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }

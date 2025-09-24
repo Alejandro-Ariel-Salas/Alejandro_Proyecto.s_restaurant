@@ -10,10 +10,10 @@ namespace Aplication.Interfaces
 {
     public interface IOrderService
     {
-        public Task<OrderResponse> CreateOrder(OrderModel order);
-        public Task<List<OrderShowResponse>> GetOrderWithFilter(string? dateFrom, string? dateTo, int? status);
-        public Task<OrderShowResponse> GetOrderById(long id);
-        public Task<OrderUpdateResponse> UpdateItems(long id, OrderModifyModel orderModifyModel);
-        public Task<OrderUpdateResponse> UpdateOrderItemStatus(long id, long orderItem, StatusModifyModel status);
+        public Task<OrderCreateReponse> CreateOrder(OrderRequest order);
+        public Task<List<OrderDetailResponse>> GetOrderWithFilter(string? dateFrom, string? dateTo, int? status);
+        public Task<OrderDetailResponse> GetOrderById(long id);
+        public Task<OrderUpdateReponse> UpdateItems(long id, OrderUpdateRequest orderModifyModel);
+        public Task<OrderUpdateReponse> UpdateOrderItemStatus(long id, long orderItem, OrderItemUpdateRequest status);
     }
 }

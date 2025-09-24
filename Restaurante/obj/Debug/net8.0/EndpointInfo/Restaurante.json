@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/Dish": {
+    "/api/v1/Dish": {
       "post": {
         "tags": [
           "Dish"
@@ -181,7 +181,7 @@
         }
       }
     },
-    "/api/Dish/{Id}": {
+    "/api/v1/Dish/{Id}": {
       "get": {
         "tags": [
           "Dish"
@@ -261,7 +261,7 @@
         }
       }
     },
-    "/api/Dish/{id}": {
+    "/api/v1/Dish/{id}": {
       "put": {
         "tags": [
           "Dish"
@@ -359,7 +359,7 @@
           }
         }
       },
-      "options": {
+      "delete": {
         "tags": [
           "Dish"
         ],
@@ -421,8 +421,8 @@
         }
       }
     },
-    "/api/Dish/Category": {
-      "options": {
+    "/api/v1/Category": {
+      "get": {
         "tags": [
           "Dish"
         ],
@@ -433,8 +433,8 @@
         }
       }
     },
-    "/api/Dish/DeliveryType": {
-      "options": {
+    "/api/v1/DeliveryType": {
+      "get": {
         "tags": [
           "Dish"
         ],
@@ -445,8 +445,8 @@
         }
       }
     },
-    "/api/Dish/Status": {
-      "options": {
+    "/api/v1/Status": {
+      "get": {
         "tags": [
           "Dish"
         ],
@@ -457,7 +457,7 @@
         }
       }
     },
-    "/api/Order": {
+    "/api/v1/Order": {
       "post": {
         "tags": [
           "Order"
@@ -603,15 +603,76 @@
             }
           }
         }
-      },
-      "options": {
+      }
+    },
+    "/api/v1/Order/{id}": {
+      "get": {
         "tags": [
           "Order"
         ],
         "parameters": [
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderShowResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderShowResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderShowResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int64"
@@ -701,68 +762,8 @@
         }
       }
     },
-    "/api/Order/{id}": {
-      "options": {
-        "tags": [
-          "Order"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/OrderShowResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OrderShowResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OrderShowResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Order/{id}/item/{orderItemId}": {
-      "options": {
+    "/api/v1/Order/{id}/item/{orderItemId}": {
+      "put": {
         "tags": [
           "Order"
         ],
@@ -885,7 +886,7 @@
       "CategoryResponse": {
         "type": "object",
         "properties": {
-          "categoryId": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
@@ -943,7 +944,7 @@
             "type": "integer",
             "format": "int32"
           },
-          "imageUrl": {
+          "image": {
             "type": "string",
             "nullable": true
           }
@@ -953,7 +954,7 @@
       "DishResponse": {
         "type": "object",
         "properties": {
-          "dishId": {
+          "id": {
             "type": "string",
             "format": "uuid"
           },
@@ -969,13 +970,13 @@
             "type": "number",
             "format": "double"
           },
-          "isActive": {
-            "type": "boolean"
-          },
           "category": {
             "$ref": "#/components/schemas/CategoryResponse"
           },
-          "imageUrl": {
+          "isActive": {
+            "type": "boolean"
+          },
+          "image": {
             "type": "string",
             "nullable": true
           },

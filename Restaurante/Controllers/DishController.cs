@@ -11,7 +11,7 @@ using System.Runtime.ConstrainedExecution;
 
 namespace Restaurante.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1")]
     [ApiController]
     public class DishController : ControllerBase
     {
@@ -23,16 +23,16 @@ namespace Restaurante.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("Dish")]
         [ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status409Conflict)]
-        public async Task<IActionResult> CreateDish([FromBody] DishModel dishModel)
+        public async Task<IActionResult> CreateDish([FromBody] DishRequest dishModel)
         {
             try
             {
                 var dish = await _dishService.CreateDish(dishModel);
-                return CreatedAtAction(nameof(CreateDish), new { id = dish.DishId }, dish);
+                return CreatedAtAction(nameof(CreateDish), new { id = dish.Id }, dish);
             }
             catch (ExceptionBadRequest ex)
             {
@@ -44,7 +44,7 @@ namespace Restaurante.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("Dish")]
         [ProducesResponseType(typeof(List<DishResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> SearchDishes([FromQuery] string? name, [FromQuery] int? category, [FromQuery] EnumSort sort = EnumSort.asc, [FromQuery] bool available = true)
@@ -60,7 +60,7 @@ namespace Restaurante.Controllers
             }
         }
 
-        [HttpGet("{Id}")]
+        [HttpGet("Dish/{Id}")]
         [ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
@@ -81,11 +81,11 @@ namespace Restaurante.Controllers
             }
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("Dish/{id}")]
         [ProducesResponseType(typeof(DishResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status409Conflict)]
-        public async Task<IActionResult> Update(Guid id, [FromBody] DishUpdateModel dish)
+        public async Task<IActionResult> Update(Guid id, [FromBody] DishUpdateRequest dish)
         {
             try
             {
@@ -102,7 +102,7 @@ namespace Restaurante.Controllers
             }
         }
 
-        [HttpOptions ("{id}")]
+        [HttpDelete("Dish/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status409Conflict)]
@@ -123,7 +123,7 @@ namespace Restaurante.Controllers
             }
         }
 
-        [HttpOptions ("Category")]
+        [HttpGet("Category")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetCategorys()
         {
@@ -131,7 +131,7 @@ namespace Restaurante.Controllers
             return Ok(categorys);
         }
 
-        [HttpOptions("DeliveryType")]
+        [HttpGet("DeliveryType")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetDeliveryTypes()
         {
@@ -139,7 +139,7 @@ namespace Restaurante.Controllers
             return Ok(deliveryTypes);
         }
 
-        [HttpOptions("Status")]
+        [HttpGet("Status")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetStatus()
         {

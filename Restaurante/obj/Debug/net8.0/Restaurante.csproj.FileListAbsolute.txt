@@ -336,7 +336,6 @@ C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\C
 C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\TP1-Salas_Alejandro\Restaurante\obj\Debug\net8.0\Restaurante.AssemblyInfoInputs.cache
 C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\TP1-Salas_Alejandro\Restaurante\obj\Debug\net8.0\Restaurante.AssemblyInfo.cs
 C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\TP1-Salas_Alejandro\Restaurante\obj\Debug\net8.0\Restaurante.csproj.CoreCompileInputs.cache
-C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\TP1-Salas_Alejandro\Restaurante\obj\Debug\net8.0\Restaurante.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\TP1-Salas_Alejandro\Restaurante\obj\Debug\net8.0\Restaurante.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\TP1-Salas_Alejandro\Restaurante\obj\Debug\net8.0\Restaurante.sourcelink.json
 C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\TP1-Salas_Alejandro\Restaurante\obj\Debug\net8.0\rjimswa.dswa.cache.json
@@ -354,3 +353,4 @@ C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\C
 C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\TP1-Salas_Alejandro\Restaurante\obj\Debug\net8.0\Restaurante.pdb
 C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\TP1-Salas_Alejandro\Restaurante\obj\Debug\net8.0\Restaurante.genruntimeconfig.cache
 C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\TP1-Salas_Alejandro\Restaurante\obj\Debug\net8.0\ref\Restaurante.dll
+C:\Users\Aleja\Desktop\Carpetas\trabajos practicos(unaj)\Proyecto Software\TP1\Codigo TP1\TP1-Salas_Alejandro\Restaurante\obj\Debug\net8.0\Restaurante.MvcApplicationPartsAssemblyInfo.cs

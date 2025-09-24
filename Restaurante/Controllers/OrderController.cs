@@ -1,4 +1,5 @@
-﻿using Aplication.Exceptions;
+﻿
+using Aplication.Exceptions;
 using Aplication.Interfaces;
 using Aplication.Models;
 using Aplication.Responses;
@@ -7,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Restaurante.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1")]
     [ApiController]
     public class OrderController : ControllerBase
     {
@@ -17,15 +18,15 @@ namespace Restaurante.Controllers
             _orderService = orderService;
         }
 
-        [HttpPost]
-        [ProducesResponseType(typeof(OrderResponse),StatusCodes.Status200OK)]
+        [HttpPost("Order")]
+        [ProducesResponseType(typeof(OrderCreateReponse),StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError),StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateOrder([FromBody] OrderModel orderModel)
+        public async Task<IActionResult> CreateOrder([FromBody] OrderRequest orderModel)
         {
             try
             {
                 var order = await _orderService.CreateOrder(orderModel);
-                return CreatedAtAction(nameof(CreateOrder), new { id = order.orderNumber }, order);
+                return CreatedAtAction(nameof(CreateOrder), new { id = order.OrderNumber }, order);
             }
             catch (ArgumentException ex)
             {
@@ -37,8 +38,8 @@ namespace Restaurante.Controllers
             }
         }
 
-        [HttpGet]
-        [ProducesResponseType(typeof(List<OrderResponse>), StatusCodes.Status200OK)]
+        [HttpGet("Order")]
+        [ProducesResponseType(typeof(List<OrderCreateReponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetOrders([FromQuery] string? dateFrom, [FromQuery] string? dateTo, [FromQuery] int? status)
         {
@@ -53,8 +54,8 @@ namespace Restaurante.Controllers
             }
         }
 
-        [HttpOptions("{id}")]
-        [ProducesResponseType(typeof(OrderShowResponse), StatusCodes.Status200OK)]
+        [HttpGet("Order/{id}")]
+        [ProducesResponseType(typeof(OrderDetailResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetOrderById(long id)
         {
@@ -69,11 +70,11 @@ namespace Restaurante.Controllers
             }
         }
 
-        [HttpOptions]
-        [ProducesResponseType(typeof(OrderUpdateResponse), StatusCodes.Status200OK)]
+        [HttpPut("Order/{id}")]
+        [ProducesResponseType(typeof(OrderUpdateReponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateOrderItems(long id, [FromBody] OrderModifyModel orderModifyModel)
+        public async Task<IActionResult> UpdateOrderItems(long id, [FromBody] OrderUpdateRequest orderModifyModel)
         {
             try
             {
@@ -90,11 +91,11 @@ namespace Restaurante.Controllers
             }
         }
 
-        [HttpOptions("{id}/item/{orderItemId}")]
-        [ProducesResponseType(typeof(OrderUpdateResponse), StatusCodes.Status200OK)]
+        [HttpPut("Order/{id}/item/{orderItemId}")]
+        [ProducesResponseType(typeof(OrderUpdateReponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateOrderItemStatus(long id, long orderItemId, [FromBody] StatusModifyModel status)
+        public async Task<IActionResult> UpdateOrderItemStatus(long id, long orderItemId, [FromBody] OrderItemUpdateRequest status)
         {
             try
             {

@@ -28,52 +28,52 @@ namespace Aplication.Service
             _statusQuery = statusQuery;
         }
 
-        public async Task<OrderResponse> CreateOrder(OrderModel order)
+        public async Task<OrderCreateReponse> CreateOrder(OrderRequest order)
         {
             decimal totalAmount = 0;
-            foreach (var item in order.items)
+            foreach (var item in order.Items)
             {
-                var dish = await _dishQuery.GetDishById(item.id);
+                var dish = await _dishQuery.GetDishById(item.Id);
                 if (dish == null || !dish.Available)
                 {
                     throw new Exception("El plato especificado no existe o no está disponible");
                 }
 
-                totalAmount += dish.Price * item.quantity;
+                totalAmount += dish.Price * item.Quantity;
             }
 
             var newOrder = new Order
             {
-                DeliveryType = order.delivery.id,
-                DeliveryTo = order.delivery.to,
+                DeliveryType = order.Delivery.Id,
+                DeliveryTo = order.Delivery.To,
                 OverallStatus = 1,
                 Price = totalAmount,
-                Notes = order.notes
+                Notes = order.Notes
             };
             await _orderCommand.InsertOrder(newOrder);
 
-            foreach (var item in order.items)
+            foreach (var item in order.Items)
             {
                 var orderItem = new OrderItem
                 {
                     Order = newOrder.OrderId,
-                    Dish = item.id,
-                    Quantity = item.quantity,
-                    Notes = item.notes,
+                    Dish = item.Id,
+                    Quantity = item.Quantity,
+                    Notes = item.Notes,
                     Status = 1,
                 };
                 await _orderItemCommand.InsertOrderItem(orderItem);
             }
             var createdOrder = await _orderQuery.GetOrderById(newOrder.OrderId);
-            return new OrderResponse
+            return new OrderCreateReponse
             {
-                createAt = createdOrder.CreateDate,
-                orderNumber = createdOrder.OrderId,
-                totalAmount = createdOrder.Price,
+                CreatedAt = createdOrder.CreateDate,
+                OrderNumber = createdOrder.OrderId,
+                TotalAmount = createdOrder.Price,
             };
         }
 
-        public async Task<OrderShowResponse> GetOrderById(long id)
+        public async Task<OrderDetailResponse> GetOrderById(long id)
         {
             var order = await _orderQuery.GetOrderById(id);
 
@@ -82,23 +82,23 @@ namespace Aplication.Service
                 throw new ExeptionNotFound("Orden no encontrada");
             }
 
-            return new OrderShowResponse
+            return new OrderDetailResponse
             {
-                orderNumber = order.OrderId,
-                totalAmount = order.Price,
-                deliveryTo = order.DeliveryTo,
-                notes = order.Notes,
-                status = new StatusResponse
+                OrderNumber = order.OrderId,
+                TotalAmount = order.Price,
+                DeliveryTo = order.DeliveryTo,
+                Notes = order.Notes,
+                Status = new StatusResponse
                 {
                     Id = order.Status.Id,
                     Name = order.Status.Name
                 },
-                deliveryType = new DeliveryTypeResponse
+                DeliveryType = new DeliveryTypeResponse
                 {
                     Id = order.DeliveryTypes.Id,
                     Name = order.DeliveryTypes.Name
                 },
-                items = order.OrderItems.Select(oi => new OrderItemShowResponse
+                Items = order.OrderItems.Select(oi => new OrderItemShowResponse
                 {
                     id = oi.OrderItemId,
                     quantity = oi.Quantity,
@@ -108,17 +108,19 @@ namespace Aplication.Service
                         Id = oi.Statuses.Id,
                         Name = oi.Statuses.Name
                     },
-                    dish = new DishShowResponse
+                    dish = new DishShortResponse
                     {
-                        id = oi.Dishes.DishId,
-                        name = oi.Dishes.Name,
-                        image = oi.Dishes.ImageUrl
+                        Id = oi.Dishes.DishId,
+                        Name = oi.Dishes.Name,
+                        Image = oi.Dishes.ImageUrl
                     }
-                }).ToList()
+                }).ToList(),
+                CreatedAt = order.CreateDate,
+                UpdatedAt = order.UpdateDate
             };
         }
 
-        public async Task<List<OrderShowResponse>> GetOrderWithFilter(string? dateFrom, string? dateTo, int? status)
+        public async Task<List<OrderDetailResponse>> GetOrderWithFilter(string? dateFrom, string? dateTo, int? status)
         {
             DateTime? fromDate = null;
             DateTime? toDate = null;
@@ -145,23 +147,23 @@ namespace Aplication.Service
 
             var orders = await _orderQuery.GetOrders(fromDate, toDate, status);
 
-            return orders.Select(o => new OrderShowResponse
+            return orders.Select(o => new OrderDetailResponse
             {
-                orderNumber = o.OrderId,
-                totalAmount = o.Price,
-                deliveryTo = o.DeliveryTo,
-                notes = o.Notes,
-                status = new StatusResponse
+                OrderNumber = o.OrderId,
+                TotalAmount = o.Price,
+                DeliveryTo = o.DeliveryTo,
+                Notes = o.Notes,
+                Status = new StatusResponse
                 {
                     Id = o.Status.Id,
                     Name = o.Status.Name
                 },
-                deliveryType = new DeliveryTypeResponse
+                DeliveryType = new DeliveryTypeResponse
                 {
                     Id = o.DeliveryTypes.Id,
                     Name = o.DeliveryTypes.Name
                 },
-                items = o.OrderItems.Select(oi => new OrderItemShowResponse
+                Items = o.OrderItems.Select(oi => new OrderItemShowResponse
                 {
                     id = oi.OrderItemId,
                     quantity = oi.Quantity,
@@ -171,19 +173,21 @@ namespace Aplication.Service
                         Id = oi.Statuses.Id,
                         Name = oi.Statuses.Name
                     },
-                    dish = new DishShowResponse
+                    dish = new DishShortResponse
                     {
-                        id = oi.Dishes.DishId,
-                        name = oi.Dishes.Name,
-                        image = oi.Dishes.ImageUrl
+                        Id = oi.Dishes.DishId,
+                        Name = oi.Dishes.Name,
+                        Image = oi.Dishes.ImageUrl
                     }
-                }).ToList()
+                }).ToList(),
+                CreatedAt = o.CreateDate,
+                UpdatedAt = o.UpdateDate
             }).ToList();
 
 
         }
 
-        public async Task<OrderUpdateResponse> UpdateItems(long id, OrderModifyModel orderModifyModel)
+        public async Task<OrderUpdateReponse> UpdateItems(long id, OrderUpdateRequest orderModifyModel)
         {
             var order = await _orderQuery.GetOrderById(id);
             decimal totalAmount = 0;
@@ -197,25 +201,25 @@ namespace Aplication.Service
                 throw new ExceptionBadRequest("No se puede modificar una orden que ya está en preparación");
             }
 
-            var itemsToRemove = new List<ItemModel>();
+            var itemsToRemove = new List<Items>();
 
-            foreach (var item in orderModifyModel.items)
+            foreach (var item in orderModifyModel.Items)
             {
-                if (item.quantity <= 0)
+                if (item.Quantity <= 0)
                 {
                     throw new ExceptionBadRequest("La cantidad debe ser mayor a cero");
                 }
                 foreach (var orderitem in order.OrderItems)
                 {
-                    if (orderitem.Dish == item.id)
+                    if (orderitem.Dish == item.Id)
                     {
-                        orderitem.Quantity = item.quantity;
-                        orderitem.Notes = item.notes;
+                        orderitem.Quantity = item.Quantity;
+                        orderitem.Notes = item.Notes;
 
                         itemsToRemove.Add(item);
 
-                        var dish = await _dishQuery.GetDishById(item.id);
-                        totalAmount += dish.Price * item.quantity;
+                        var dish = await _dishQuery.GetDishById(item.Id);
+                        totalAmount += dish.Price * item.Quantity;
 
                         await _orderItemCommand.UpdateOrderItem(orderitem);
                     }
@@ -224,12 +228,12 @@ namespace Aplication.Service
 
             foreach (var itemToRemove in itemsToRemove)
             {
-                orderModifyModel.items.Remove(itemToRemove);
+                orderModifyModel.Items.Remove(itemToRemove);
             }
 
-            foreach (var newItem in orderModifyModel.items)
+            foreach (var newItem in orderModifyModel.Items)
             {
-                var dish = await _dishQuery.GetDishById(newItem.id);
+                var dish = await _dishQuery.GetDishById(newItem.Id);
                 if (dish == null || !dish.Available)
                 {
                     throw new ExceptionBadRequest("El plato especificado no existe o no está disponible");
@@ -237,12 +241,12 @@ namespace Aplication.Service
                 var orderItem = new OrderItem
                 {
                     Order = order.OrderId,
-                    Dish = newItem.id,
-                    Quantity = newItem.quantity,
-                    Notes = newItem.notes,
+                    Dish = newItem.Id,
+                    Quantity = newItem.Quantity,
+                    Notes = newItem.Notes,
                     Status = 1,
                 };
-                totalAmount += dish.Price * newItem.quantity;
+                totalAmount += dish.Price * newItem.Quantity;
                 await _orderItemCommand.InsertOrderItem(orderItem);
             }
 
@@ -250,22 +254,22 @@ namespace Aplication.Service
             order.UpdateDate = DateTime.Now;
             await _orderCommand.UpdateOrder(order);
 
-            return new OrderUpdateResponse
+            return new OrderUpdateReponse
             {
-                orderNumber = order.OrderId,
-                totalAmount = order.Price,
-                updateAt = order.UpdateDate
+                OrderNumber = order.OrderId,
+                TotalAmount = order.Price,
+                UpdatedAt = order.UpdateDate
             };
         }
 
-        public async Task<OrderUpdateResponse> UpdateOrderItemStatus(long id, long orderItemId, StatusModifyModel status)
+        public async Task<OrderUpdateReponse> UpdateOrderItemStatus(long id, long orderItemId, OrderItemUpdateRequest status)
         {
             var order = await _orderQuery.GetOrderByItemId(id);
             if (order == null)
             {
                 throw new ExeptionNotFound("Orden no encontrada");
             }
-            if (! await _statusQuery.ExistEstatus(status.status))
+            if (! await _statusQuery.ExistEstatus(status.Status))
             {
                 throw new ExceptionBadRequest("El estado especificado no es válido");
             }
@@ -273,16 +277,16 @@ namespace Aplication.Service
             {
                 if (item.OrderItemId == orderItemId)
                 {
-                    item.Status = status.status;
+                    item.Status = status.Status;
                     await _orderItemCommand.UpdateOrderItem(item);
                 }
             }
             order.UpdateDate = DateTime.Now;
             await _orderCommand.UpdateOrder(order);
-            return new OrderUpdateResponse {
-                orderNumber = order.OrderId,
-                totalAmount = order.Price,
-                updateAt = order.UpdateDate
+            return new OrderUpdateReponse {
+                OrderNumber = order.OrderId,
+                TotalAmount = order.Price,
+                UpdatedAt = order.UpdateDate
             };
         }
     }

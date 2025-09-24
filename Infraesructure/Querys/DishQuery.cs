@@ -27,20 +27,6 @@ namespace Infraesructure.Querys
 
         }
 
-        public async Task<List<Dish>> GetByCategoryId(int Id, bool available, EnumSort sort)
-        {
-            if (sort == EnumSort.asc)
-            {
-                var dishes = await _context.dishes.Where(d => d.Category == Id && d.Available == available).Include(d => d.Categorys).OrderBy(d => d.Price).ToListAsync();
-                return dishes;
-            }
-            else
-            {
-                var dishes = await _context.dishes.Where(d => d.Category == Id && d.Available == available).Include(d => d.Categorys).OrderByDescending(d => d.Price).ToListAsync();
-                return dishes;
-            }
-        }
-
         public async Task<Dish> GetDishById(Guid DishId)
         {
             var dish = await _context.dishes.Include(d => d.Categorys).FirstOrDefaultAsync(d => d.DishId == DishId);
@@ -53,18 +39,35 @@ namespace Infraesructure.Querys
             return dish;
         }
 
-        public async Task<List<Dish>> GetDishesByName(string name, bool available, EnumSort sort)
+        public async Task<List<Dish>> GetDishesByFilter(string? name, bool available, EnumSort sort, int? id)
         {
+            var query = _context.dishes.AsQueryable();
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                query = query.Where(d => d.Name.Contains(name));
+            }
+
+            if (available)
+            {
+                query = query.Where(d => d.Available == available);
+            }
+
+            if (available)
+            {
+                query = query.Where(d => d.Available == available);
+            }
+
             if (sort == EnumSort.asc)
             {
-                var dishes = await _context.dishes.Where(d => d.Name.ToLower().Contains(name.ToLower()) && d.Available == available).Include(d => d.Categorys).OrderBy(d => d.Price).ToListAsync();
-                return dishes;
+                query = query.OrderBy(d => d.Price);
             }
             else
             {
-                var dishes = await _context.dishes.Where(d => d.Name.ToLower().Contains(name.ToLower()) && d.Available == available).Include(d => d.Categorys).OrderByDescending(d => d.Price).ToListAsync();
-                return dishes;
+                query = query.OrderByDescending(d => d.Price);
             }
+
+            return await query.Include(d => d.Categorys).ToListAsync();
         }
 
         public async Task<bool> ExistCategory(int Id)

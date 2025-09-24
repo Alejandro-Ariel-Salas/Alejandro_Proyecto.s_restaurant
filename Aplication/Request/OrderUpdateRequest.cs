@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Aplication.Models
 {
-    public class OrderModifyModel
+    public class OrderUpdateRequest
     {
-        public List<ItemModel> items { get; set; }
+        public List<Items> Items { get; set; }
     }
 }

@@ -23,17 +23,17 @@ namespace Aplication.Service
         private readonly IDeliveryTypeQuery _deliveryTypeQuery;
 
 
-        public DishService(IDishCommand dishCommand, IDishQuery dishQuery, IStatusQuery statusQuery, ICategoryQuery categoryQuery, IDeliveryTypeQuery deliveryTypeQuery)
+        public DishService(IDishCommand dishCommand, IDishQuery dishQuery, IStatusQuery statusQuery, ICategoryQuery categoryQuery, IDeliveryTypeQuery deliveryTypeQuery, IOrderItemQuery orderItemQuery)
         {
             _dishCommand = dishCommand;
             _dishQuery = dishQuery;
-            _orderItemQuery = _orderItemQuery;
+            _orderItemQuery = orderItemQuery;
             _statusQuery = statusQuery;
             _categoryQuery = categoryQuery;
             _deliveryTypeQuery = deliveryTypeQuery;
         }
 
-        public async Task<DishResponse> CreateDish(DishModel dishModel)
+        public async Task<DishResponse> CreateDish(DishRequest dishModel)
         {
             await DishValidation(dishModel);
             {
@@ -44,32 +44,32 @@ namespace Aplication.Service
                     Price = dishModel.Price,
                     Category = dishModel.Category,
                     Available = true,
-                    ImageUrl = dishModel.ImageUrl,
+                    ImageUrl = dishModel.Image,
                 };
                 await _dishCommand.InsertDish(dish);
                 var createdDish = await _dishQuery.GetDishById(dish.DishId);
 
                 var response = new DishResponse
                 {
-                    DishId = dish.DishId,
+                    Id = dish.DishId,
                     Name = dish.Name,
                     Description = dish.Description,
                     Price = dish.Price,
-                    Category = new CategoryResponse
+                    Category = new GenericResponse
                     {
-                        CategoryId = createdDish.Categorys.Id,
+                        Id = createdDish.Categorys.Id,
                         Name = createdDish.Categorys.Name
                     },
                     IsActive = dish.Available,
-                    ImageUrl = dish.ImageUrl,
-                    CreateDate = dish.CreateDate,
-                    UpdateDate = dish.UpdateDate,
+                    Image= dish.ImageUrl,
+                    CreatedAt = dish.CreateDate,
+                    UpdatedAt = dish.UpdateDate,
                 };
                 return response;
             }
         }
 
-        public async Task DishValidation(DishModel dish)
+        public async Task DishValidation(DishRequest dish)
         {
             var existingDish = await _dishQuery.GetDishByName(dish.Name);
             if (existingDish != null)
@@ -101,19 +101,19 @@ namespace Aplication.Service
 
             var responseDish = new DishResponse
             {
-                DishId = dish.DishId,
+                Id = dish.DishId,
                 Name = dish.Name,
                 Description = dish.Description,
                 Price = dish.Price,
-                Category = new CategoryResponse
+                Category = new GenericResponse
                 {
-                    CategoryId = dish.Categorys.Id,
+                    Id = dish.Categorys.Id,
                     Name = dish.Categorys.Name
                 },
                 IsActive = false,
-                ImageUrl = dish.ImageUrl,
-                CreateDate = dish.CreateDate,
-                UpdateDate = dish.UpdateDate,
+                Image = dish.ImageUrl,
+                CreatedAt = dish.CreateDate,
+                UpdatedAt = dish.UpdateDate,
             };
 
             if (orderItems != null)
@@ -150,78 +150,61 @@ namespace Aplication.Service
 
             return new DishResponse
             {
-                DishId = dish.DishId,
+                Id = dish.DishId,
                 Name = dish.Name,
                 Description = dish.Description,
                 Price = dish.Price,
-                Category = new CategoryResponse
+                Category = new GenericResponse
                 {
-                    CategoryId = dish.Categorys.Id,
+                    Id = dish.Categorys.Id,
                     Name = dish.Categorys.Name
                 },
                 IsActive = dish.Available,
-                ImageUrl = dish.ImageUrl,
-                CreateDate = dish.CreateDate,
-                UpdateDate = dish.UpdateDate,
+                Image = dish.ImageUrl,
+                CreatedAt = dish.CreateDate,
+                UpdatedAt = dish.UpdateDate,
             };
         }
 
         public async Task<List<DishResponse>> GetDishes(string? name, int? category, EnumSort sort, bool dishAvailable)
         {
-            if (!string.IsNullOrEmpty(name))
-            {
-                var query = await _dishQuery.GetDishesByName(name, dishAvailable, sort);
-                return query.Select( d => new DishResponse
+            if (category != null)
                 {
-                    DishId = d.DishId,
-                    Name = d.Name,
-                    Description = d.Description,
-                    Price = d.Price,
-                    Category = new CategoryResponse
-                    {
-                        CategoryId = d.Categorys.Id,
-                        Name = d.Categorys.Name
-                    },
-                    IsActive = d.Available,
-                    ImageUrl = d.ImageUrl,
-                    CreateDate = d.CreateDate,
-                    UpdateDate = d.UpdateDate,
-                }).ToList();
+                var categoryExists = await _dishQuery.ExistCategory(category.Value);
+                if (!categoryExists)
+                {
+                    throw new ExceptionBadRequest("Parámetros de ordenamiento inválidos");
+                }
             }
 
-            if (category.HasValue)
+            var query = await _dishQuery.GetDishesByFilter(name, dishAvailable, sort, category);
+            return query.Select( d => new DishResponse
             {
-                var query = await _dishQuery.GetByCategoryId((int)category, dishAvailable, sort);
-                return query.Select(d => new DishResponse
+                Id = d.DishId,
+                Name = d.Name,
+                Description = d.Description,
+                Price = d.Price,
+                Category = new GenericResponse
                 {
-                    DishId = d.DishId,
-                    Name = d.Name,
-                    Description = d.Description,
-                    Price = d.Price,
-                    Category = new CategoryResponse 
-                    { 
-                        CategoryId = d.Categorys.Id, 
-                        Name = d.Categorys.Name 
-                    },
-                    IsActive = d.Available,
-                    ImageUrl = d.ImageUrl,
-                    CreateDate = d.CreateDate,
-                    UpdateDate = d.UpdateDate,
-                }).ToList();
-            }
-
-            throw new ExceptionBadRequest("Parámetros de ordenamiento inválidos");
+                    Id = d.Categorys.Id,
+                    Name = d.Categorys.Name
+                },
+                IsActive = d.Available,
+                Image = d.ImageUrl,
+                CreatedAt = d.CreateDate,
+                UpdatedAt = d.UpdateDate,
+            }).ToList();
         }
 
-        public async Task<DishResponse> UpdateDish(Guid dishId, DishUpdateModel dish)
+        public async Task<DishResponse> UpdateDish(Guid dishId, DishUpdateRequest dish)
         { 
-            await DishValidation( new DishModel
+            await DishValidation( new DishRequest
             {
                 Name = dish.Name,
                 Description = dish.Description,
                 Price = dish.Price,
                 Category = dish.Category,
-                ImageUrl = dish.Image,
+                Image = dish.Image,
             });
 
             var existingDish = await _dishQuery.GetDishById(dishId);
@@ -243,27 +226,27 @@ namespace Aplication.Service
 
             return new DishResponse
             {
-                DishId = existingDish.DishId,
+                Id = existingDish.DishId,
                 Name = dish.Name,
                 Description = dish.Description,
                 Price = dish.Price,
-                Category = new CategoryResponse
+                Category = new GenericResponse
                 {
-                    CategoryId = existingDish.Categorys.Id,
+                    Id = existingDish.Categorys.Id,
                     Name = existingDish.Categorys.Name
                 },
                 IsActive = dish.IsActive,
-                ImageUrl = dish.Image,
-                CreateDate = existingDish.CreateDate,
-                UpdateDate = DateTime.UtcNow,
+                Image = dish.Image,
+                CreatedAt = existingDish.CreateDate,
+                UpdatedAt = DateTime.UtcNow,
             };
 
         }
 
-        public async Task<List<CategorysResponse>> GetAllCategory()
+        public async Task<List<CategoryResponse>> GetAllCategory()
         {
             var categories = await _categoryQuery.GetAllCategories();
-            return categories.Select(c => new CategorysResponse
+            return categories.Select(c => new CategoryResponse
             {
                 Id = c.Id,
                 Name = c.Name,
